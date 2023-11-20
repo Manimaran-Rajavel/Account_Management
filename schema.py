@@ -33,7 +33,7 @@ class Account_Management:
             Session.close()
             particulars=credit=debit=balance=''
 
-            return redirect(url_for('record'))
+            return render_template('add_record.html', message='true')
         else:
             return redirect(url_for('index'))
     
@@ -78,13 +78,12 @@ class Account_Management:
             update.balance = balance
             Session.commit()
             Session.close()
-            session.clear()
             
         return redirect(url_for('account_summary'))
     
     def logout():
         
-        session.pop()
+        session.clear()
         response = make_response(redirect(url_for('index', _rnd=random.random())))
         response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
         response.headers['Pragma'] = 'no-cache'

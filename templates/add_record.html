@@ -4,8 +4,11 @@
 
 {% block content %}
 
+
+
 <body class="container-fluid bg">
 <div class="mt-2 d-flex justify-content-between">
+     <div class="notification"></div>
 <h5>ADD RECORD</h5>
 <div><a class="btn btn-sm btn-info float-left" href="/acc_summary">Go to Summary</a></div>
 </div>
@@ -44,4 +47,22 @@
 </form>
 
 
+{% endblock %}
+
+{% block scriptnotification %}
+
+{% if message %}
+<script>
+    $(document).ready(function() {
+    function showNotification(message) {
+        $('.notification').text(message);
+        $('.notification').fadeIn().delay(3000).fadeOut();
+      }
+    
+      // Trigger the notification
+      showNotification("Record Added Successfully");
+    });
+</script>
+
+{% endif %}
 {% endblock %}
