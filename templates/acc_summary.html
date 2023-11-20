@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+
+{% block title %} Account-Summary  {% endblock %}
+
+{% block content %}
+
+<body class="container-fluid bg">
+<div class="mt-2 d-flex justify-content-between">
+<h5>ACCOUNT SUMMARY</h5>
+<div><button id="logout" class="btn btn-sm btn-danger">Logout</button></div>
+</div>
+<hr>
+<div>
+    <a class="mb-1 btn btn-sm btn-primary" href="/record">+ Add New Record</a>
+
+    <div>
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Particulars</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                    <th>Balance</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for datas in data %}
+                <tr>
+                    <td>{{ loop.index  }}</td>
+                    <td>{{ datas.particulars }}</td>
+                    <td>{{ datas.credit }}</td>
+                    <td>{{ datas.debit }}</td>
+                    <td>{{ datas.balance }}</td>
+                    <td>
+                        <i id="edit" data-edit="{{datas.id}}" class="edit bi-pencil-fill cursor text-primary"></i>
+                        <i id="delete" data-del="{{datas.id}}" class="delete bi-trash-fill cursor m-4 text-danger"></i>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
